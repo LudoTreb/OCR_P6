@@ -15,6 +15,8 @@
 /* Body */
 
 body {
+    border: 5px solid red;
+    width: 900px;
     font-family: robotoregular;
     color: white;
     background-color: black;
@@ -22,15 +24,16 @@ body {
 
 /* Header */
 
-header {
-    
+
+nav {
+    display: flex;
+    align-items: center;
     height: 60px;
-    
+    border: 5px solid greenyellow;
 }
 
 #nav_logo {
-    position: relative;
-    top: 10px;
+
     width: 50px;
 }
 
@@ -41,19 +44,24 @@ header {
     
 }
 
+section {
+    border: 5px solid cyan;
+
+}
 
 
 /* Section Home */
 
 #home {
-    
+    display: flex;
+    flex-direction: column;
     background-image: url(ress/img/img_film_mieux_noté.png);
-    width: 1280px;
-    height: 580px;
+    background-position: center center;
+
 }
 
 section h1 {
-    padding: 300px 0 0 25px;
+    padding: 250px 0 0 25px;
     color: black;
 }
 .resume {
@@ -65,30 +73,54 @@ section h1 {
 
 .button_home {
     margin-left: 25px;
+    margin-bottom: 25px;
     text-align: center;
-    font-size: 25px;
-    width: 125px;
-    height: 50px;
+    font-size: 1em;
+    width: 100px;
+    height: 40px;
 }
 
-/* Section Category */
+/* Section Container  */
+
+#container {
+    border: 5px solid blue;
+    display: flex;
+    flex-direction: column;
+}
 
 
 section h3 {
-    padding: 15px 0 10px 25px;
+    display: flex;
+    padding: 0 0 0 25px;
     color: white;
+}
+
+
+/* Caroussel */
+
+#element_caroussel {
+    border: 5px solid lightcoral;
+    display: flex;
+    align-items: center;
+}
+
+#caroussel {
+    display: flex;
+    border: 5px solid green;
+    
 }
 
 .mini_cover {
     border: 2px solid withe;
     border-radius: 3px;
-    margin: 0 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
 
 }
 
 .scroll_left {
-    position: relative;
-    bottom: 85px;
+    display: flex;
+    
+    
     width: 0; 
     height: 0; 
     border-top: 10px solid transparent;
@@ -100,8 +132,8 @@ section h3 {
 }
 
 .scroll_right {
-    position: relative;
-    bottom: 85px;
+    display: flex;
+
     width: 0; 
     height: 0; 
     border-top: 10px solid transparent;
@@ -110,4 +142,16 @@ section h3 {
     
     border-left:10px solid white;
     background-color: black;
+}
+
+
+/* Modal */
+
+.resume_modal {
+
+    color: white;
+    width: 640px;
+    font-size: 1em;
+    text-align: justify;
+
 }
