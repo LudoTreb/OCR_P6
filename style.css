@@ -13,15 +13,16 @@
 }
 
 
-
 /* Body */
 
 body {
-    border: 5px solid red;
+    margin-left: auto;
+    margin-right: auto;
     width: 900px;
     font-family: robotoregular;
     color: white;
     background-color: black;
+    border: 2px solid white;
 }
 
 /* Header */
@@ -29,14 +30,21 @@ body {
 
 nav {
     display: flex;
+    position: fixed;
     align-items: center;
     height: 60px;
-    border: 5px solid greenyellow;
+    background-color: black;
+    top: 0;
+    width: 100%;
+    max-width: 900px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    /* border: 5px solid greenyellow; */
 }
 
 #nav_logo {
 
-    width: 50px;
+    width: 40px;
 }
 
 .nav_item {
@@ -47,7 +55,7 @@ nav {
 }
 
 section {
-    border: 5px solid cyan;
+    /* border: 5px solid cyan; */
 
 }
 
@@ -58,21 +66,30 @@ section {
 #home {
     display: flex;
     flex-direction: column;
-    background-image: url(ress/img/img_film_mieux_noté.png);
-    background-position: center;
+    background-image: url("");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat ;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    
+}
 
+.backgroundColor {
+    background-color:linear-gradient(to bottom, red, rgba(0,0,0,1) );
+    z-index: 3;
 }
 
 section h1 {
     padding: 250px 0 0 25px;
-    color: black;
+    color: white;
 }
 
-.resume {
+#resume {
     padding-left: 25px;
     width: 400px;
     text-align: justify;
-    color: black;
+    color: white;
 }
 
 .button_home {
@@ -84,12 +101,15 @@ section h1 {
     height: 40px;
 }
 
+
 /* Section Container  */
 
 #container {
-    border: 5px solid blue;
+
     display: flex;
     flex-direction: column;
+    margin-top: 25px;
+    /* border: 5px solid blue; */
 }
 
 
@@ -102,14 +122,16 @@ section h3 {
 
 /* Caroussel */
 
-#element_caroussel {
-    border: 5px solid lightcoral;
+.element_caroussel {
     display: flex;
     align-items: center;
+    /* border: 5px solid lightcoral; */
 
 }
 
-#caroussel {
+#caroussel_01, #caroussel_02,
+#caroussel_03, #caroussel_04  {
+    
     height: 250px;
     width: auto;
     overflow: hidden;
@@ -121,32 +143,34 @@ section h3 {
     align-items: center;
     padding-left: 5px;
     padding-right: 5px;
-
-
+    
 }
 
-.mini_cover {
-    border: 2px solid withe;
-    border-radius: 3px;
-    margin: 10px 10px 10px 10px;
-
+#container img {
+    height: 250px;
+    width: auto;
+    border-radius: 25px;
+    /* border: 2px solid white; */
+    margin: auto 10px 10px 10px;
 }
 
-.scroll_left, .scroll_right {
+#scroll_left_01, #scroll_right_01, #scroll_left_02, #scroll_right_02,
+#scroll_left_03, #scroll_right_03, #scroll_left_04, #scroll_right_04 {
 
     display: flex;
     color: white;
     font-size: 1.75em;
     background-color: black;
-
+    padding-right: 10px;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right: 0;
     border-left: 10px solid transparent;
-
-
 }
 
+.cover {
+    background-color: black;
+}
 
 
 
@@ -159,17 +183,19 @@ section h3 {
 .modal {
     display: none;
     /* Hidden by default */
-    position: fixed;
+    position:fixed;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
+    max-width: 900px;
     /* Full width */
     height: 100%;
     /* Full height */
-    overflow: auto;
+    overflow: hidden;
     /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
     /* Fallback color */
@@ -181,6 +207,7 @@ section h3 {
 .modal-content {
     color: black;
     background-color: #fefefe;
+    
     margin: 15% auto;
     /* 15% from the top and centered */
     padding: 20px;
@@ -188,6 +215,11 @@ section h3 {
     border-radius: 5px;
     width: 80%;
     /* Could be more or less, depending on screen size */
+}
+
+/* Test pour l'image du modal*/
+#modalImgUrl {
+    background-image: url("");
 }
 
 /* The Close Button */
@@ -209,30 +241,29 @@ section h3 {
     width: 75%;
 }
 
-@media screen and (max-width: 1280px) {
+
+/* Responsive parameters */
+@media screen and (max-width: 900px) {
     
     body {
-        border: 5px solid red;
-        
-        width: auto;
-        height: auto;
-        
+        margin-left: auto;
+        margin-right: auto;
         color: white;
         background-color: black;
         
     }
     #home {
         display: flex;
-        max-height: 400px;
+        max-height: 250px;
         flex-direction: column;
-        background-image: url(ress/img/img_film_mieux_noté.png);
+        background-image: url("");
         background-position: center;
     
     }
 
     section h1 {
         padding-block-start: 25px;
-        color: black;
+        color: white;
     }
     
     .resume {
@@ -245,9 +276,9 @@ section h3 {
     .button_home {
         
         text-align: center;
-        font-size: 1em;
-        width: 100px;
-        height: 40px;
+        font-size: 0.8em;
+        width: 80px;
+        height: 30px;
     }
  
 }
