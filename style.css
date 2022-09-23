@@ -129,6 +129,12 @@ section h3 {
 
 }
 
+#element_caroussel_01, #element_caroussel_02,
+#element_caroussel_03, #element_caroussel_04 {
+    display: flex;
+    align-items: center;
+}
+
 #caroussel_01, #caroussel_02,
 #caroussel_03, #caroussel_04  {
     
@@ -146,16 +152,25 @@ section h3 {
     
 }
 
-#container img {
+.cover img {
     height: 250px;
     width: auto;
-    border-radius: 25px;
-    /* border: 2px solid white; */
-    margin: auto 10px 10px 10px;
+    border-radius: 5px;
+    border: 2px solid rgba(255,255,255,0.25);
+    margin: 20px 10px 10px 10px;
+    
 }
 
-#scroll_left_01, #scroll_right_01, #scroll_left_02, #scroll_right_02,
-#scroll_left_03, #scroll_right_03, #scroll_left_04, #scroll_right_04 {
+.cover {
+    padding: auto;
+    border: none;
+    padding: 0;
+    background: none;
+    
+    
+}
+
+.scroll_left, .scroll_right {
 
     display: flex;
     color: white;
@@ -167,12 +182,6 @@ section h3 {
     border-right: 0;
     border-left: 10px solid transparent;
 }
-
-.cover {
-    background-color: black;
-}
-
-
 
 #modalClass {
 

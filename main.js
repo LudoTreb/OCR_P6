@@ -3,25 +3,6 @@ let url_genre_Action = "http://localhost:8000/api/v1/titles/?genre=Action";
 let url_genre_Romance = "http://localhost:8000/api/v1/titles/?genre=Romance";
 let url_genre_Comedy = "http://localhost:8000/api/v1/titles/?genre=Comedy";
 
-// Class Modal
-class Modal {
-  constructor(imgUrl, title, rate, releaseDate, runTime, storyLine, cast, director, genre, countryOfOrigin, boxOffice) {
-    this.image_url = imgUrl;
-    this.title = title;
-    this.rate = rate;
-    this.releaseDate = releaseDate;
-    this.runTime = runTime;
-    this.storyLine = storyLine;
-    this.cast = cast;
-    this.director = director;
-    this.genre = genre;
-    this.countryOfOrigin = countryOfOrigin;
-    this.boxOffice = boxOffice;
-  }
-}
-
-let movieTest = new Modal("https://m.media-amazon.com/images/M/MV5BNjA5Y2ZhYzctNDc1Yy00OGViLWI3NGUtOTYwZmE3NDFiYmIxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UY268_CR72,0,182,268_AL_.jpg", "Iron Man", 7.9, 2008, "2h06", "Tony Stark. Genius, billionaire, playboy, philanthropist. Son of legendary inventor and weapons contractor Howard Stark. When Tony Stark is assigned to give a weapons presentation to an Iraqi unit led by Lt. Col. James Rhodes, he's given a ride on enemy lines. That ride ends badly when Stark's Humvee that he's riding in is attacked by enemy combatants.", "Robert Downey Jr", "Jon Favreau", "Action", "USA", "$100.000",)
-
 // Get the modal
 let modal = document.getElementById("myModal");
 
@@ -32,9 +13,7 @@ let btn = document.getElementById("mainButton");
 let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function () {
-  modal.style.display = "block";
-}
+btn.onclick = getMoviesID;
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
@@ -48,44 +27,11 @@ window.onclick = function (event) {
   }
 }
 
-// Modal content
-let eltImgUrl = document.getElementById("modalImgUrl");
-eltImgUrl.style.backgroundImage = `${movieTest.imgUrl}`;
-
-let eltTitle = document.getElementById("modalTitle");
-eltTitle.innerText = `${movieTest.title}`;
-
-let eltDetails = document.getElementById("modalDetails");
-eltDetails.innerText = `${movieTest.rate}/10 - ${movieTest.releaseDate} - ${movieTest.runTime}`;
-
-let eltStoryLine = document.getElementById("modalStoryLine");
-eltStoryLine.innerText = `Résumé
-${movieTest.storyLine}`;
-
-let eltCast = document.getElementById("modalCast");
-eltCast.innerText = `Acteurs
-${movieTest.cast}`;
-
-let eltDirector = document.getElementById("modalDirector");
-eltDirector.innerText = `Réalisateur : ${movieTest.director}`;
-
-let eltGenre = document.getElementById("modalGenre");
-eltGenre.innerText = `Genre : ${movieTest.genre}`;
-
-let eltCountryOfOrigin = document.getElementById("modalCountryOfOrigin");
-eltCountryOfOrigin.innerText = `Pays d'origine : ${movieTest.countryOfOrigin}`;
-
-let eltBoxOffice = document.getElementById("modalBoxOffice");
-eltBoxOffice.innerText = `Box Office : ${movieTest.boxOffice}`;
-
-
 // Modal content function 
 async function getModal(url) {
-
   fetch(url)
   .then(function(res){
     if (res.ok){
-      
       return res.json();
     }
   })
@@ -93,15 +39,6 @@ async function getModal(url) {
   .then(function(json){
     
     let modalContent = json;
-    
-    // test pour l'ajout de l'image
-    /* let img = document.createElement("img");
-    let modalImg = document.getElementById("modalImgUrl");
-    img.src = modalContent.image_url;
-    modalImg.appendChild(img); */
-    
-    /* document.querySelector("#modalImgUrl").innerHTML = modalContent.image_url; */
-    
     let image = document.querySelector("#modalImgUrl");
     image.src = modalContent.image_url;
     document.getElementById("modalTitle").innerHTML = modalContent.title;
@@ -113,13 +50,10 @@ async function getModal(url) {
     document.getElementById("modalCountryOfOrigin").innerHTML = `PAYS D'ORIGINE : <br/>${modalContent["countries"].join(", ")}`;
     document.getElementById("modalBoxOffice").innerHTML = `BOX OFFICE : <br/>${modalContent["worldwide_gross_income"]}`;
     console.log(document.getElementById("modalDetails").innerHTML);
-
     document.getElementById("myModal").style.display = "block";
 
   });
-
 }
-
 
 function getMoviesID(){
   var elt = this;
@@ -129,46 +63,20 @@ function getMoviesID(){
   getModal(urldetail); 
 }
 
-
 // Function to get movie's info for carousel 
 async function getMovies(url, id_caroussel){
   fetch(url)
   .then(function(res){
     if (res.ok){
-      return res.json(); 
-      /*  "0": {
-          "id": 9,
-          "url": "http://localhost:8000/api/v1/titles/9",
-          "imdb_url": "https://www.imdb.com/title/tt0000009/",
-          "title": "Miss Jerry",
-          "year": 1894,
-          "imdb_score": "6.0",
-          "votes": 154,
-          "image_url": "https://m.media-amazon.com/images/M/MV5BNjA5Y2ZhYzctNDc1Yy00OGViLWI3NGUtOTYwZmE3NDFiYmIxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UY268_CR72,0,182,268_AL_.jpg",
-          "directors": [
-            "Alexander Black"
-          ],
-          "actors": [
-            "Blanche Bayliss",
-            "Chauncey Depew",
-            "William Courtenay"
-          ],
-          "writers": [
-            "Alexander Black"
-          ],
-          "genres": [
-            "Romance"
-          ]
-        }
-      }*/
-      
+      return res.json();
     }
   })
+
   .then(function(value){
 
     document.getElementById(id_caroussel);
 
-    value.results.slice(-10).forEach(movie => {
+    value.results.slice(-7).forEach(movie => {
       // console.log(movie);
 
       let img = document.createElement("img");
@@ -185,8 +93,8 @@ async function getMovies(url, id_caroussel){
       carousel.appendChild(linkApi);
 
     });
-    
   })
+
   .catch(function(err){
     // Une erreur est survenue
   });
@@ -197,157 +105,136 @@ async function getMainMovies(url, id_title, id_description, id_imgUrl){
   fetch(url)
   .then(function(res){
     if (res.ok){
-      
       return res.json();
     }
   })
 
   .then(function(json){
-
     let mainMovie = json.results[0];
     document.getElementById(id_title).innerHTML = mainMovie.title;
     document.getElementById(id_imgUrl).style.backgroundImage = "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) )," + " " + `url(${mainMovie.image_url})`;
+    document.getElementById("mainButton").setAttribute("data-id", mainMovie.id);  
     let urlComplet = mainMovie.url;
     return fetch(urlComplet);
   })
 
   .then(function(res){
     if (res.ok){
-      
       return res.json();
-
     }
   })
 
   .then(function(value){
-
     let mainMovieDescription = value.long_description;
-    
     document.getElementById(id_description).innerHTML = mainMovieDescription;
-
-
   })
+
   .catch(function(err){
     // Une erreur est survenue
   });
 }
 
-
-
 getMainMovies(url_score, "title", "resume", "home");
-
 getMovies(url_score, "caroussel_01");
 getMovies(url_genre_Action, "caroussel_02");
 getMovies(url_genre_Romance, "caroussel_03");
 getMovies(url_genre_Comedy, "caroussel_04");
 
+// Variables Button for carousel 
+let scroll_left = document.getElementsByClassName("scroll_left");
+let scroll_right = document.getElementsByClassName("scroll_right");
+let parentScroll_1 = document.getElementById("element_caroussel_01");
+let parentScroll_2 = document.getElementById("element_caroussel_02");
+let parentScroll_3 = document.getElementById("element_caroussel_03");
+let parentScroll_4 = document.getElementById("element_caroussel_04");
+
+// Button function for scroll left
+for (let elt of scroll_left){
+  if (elt.parentNode == parentScroll_1) {
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_01');
+      conent.scrollLeft -= 250;
+      event.preventDefault();
+    });
+  }
+
+  if (elt.parentNode == parentScroll_2) {
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_02');
+      conent.scrollLeft -= 250;
+      event.preventDefault();
+    });
+  }
+
+  if (elt.parentNode == parentScroll_3) {
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_03');
+      conent.scrollLeft -= 250;
+      event.preventDefault();
+    });
+  }
+
+  if (elt.parentNode == parentScroll_4) {
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_04');
+      conent.scrollLeft -= 250;
+      event.preventDefault();
+    });
+  }
+}
+
+// Button function for scroll right
+for (let elt of scroll_right){
+  if (elt.parentNode == parentScroll_1) {
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_01');
+      conent.scrollLeft += 250;
+      event.preventDefault();
+    });
+  }
+
+  if (elt.parentNode == parentScroll_2) { 
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_02');
+      conent.scrollLeft += 250;
+      event.preventDefault();
+    });
+  }
+
+  if (elt.parentNode == parentScroll_3) { 
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_03');
+      conent.scrollLeft += 250;
+      event.preventDefault();
+    });
+  }
+
+  if (elt.parentNode == parentScroll_4) { 
+    elt.addEventListener("click", function(event) {
+      const conent = document.querySelector('#caroussel_04');
+      conent.scrollLeft += 250;
+      event.preventDefault();
+    });
+  }
+}
 
 
-// Button for carousel
-const leftBtn_01 = document.getElementById('scroll_left_01');
+/* 
 
-leftBtn_01.addEventListener("click", function(event) {
-  console.log("dectection scroll left");
-  let conent = document.querySelector('#caroussel_01');
-  console.log(conent.scrollLeft);
-  conent.scrollLeft -= 250;
-  console.log(conent.scrollLeft);
-  event.preventDefault();
-});
-
-const rightBtn_01 = document.getElementById('scroll_right_01');
-
-rightBtn_01.addEventListener("click", function(event) {
-  const conent = document.querySelector('#caroussel_01');
-  conent.scrollLeft += 250;
-  event.preventDefault();
-});
-
-const leftBtn_02 = document.getElementById('scroll_left_02');
-
-leftBtn_02.addEventListener("click", function(event) {
-  console.log("dectection scroll left");
-  let conent = document.querySelector('#caroussel_02');
-  console.log(conent.scrollLeft);
-  conent.scrollLeft -= 250;
-  console.log(conent.scrollLeft);
-  event.preventDefault();
-});
-
-const rightBtn_02 = document.getElementById('scroll_right_02');
-
-rightBtn_02.addEventListener("click", function(event) {
-  const conent = document.querySelector('#caroussel_02');
-  conent.scrollLeft += 250;
-  event.preventDefault();
-});
-
-const leftBtn_03 = document.getElementById('scroll_left_03');
-
-leftBtn_03.addEventListener("click", function(event) {
-  console.log("dectection scroll left");
-  let conent = document.querySelector('#caroussel_03');
-  console.log(conent.scrollLeft);
-  conent.scrollLeft -= 250;
-  console.log(conent.scrollLeft);
-  event.preventDefault();
-});
-
-const rightBtn_03 = document.getElementById('scroll_right_03');
-
-rightBtn_03.addEventListener("click", function(event) {
-  const conent = document.querySelector('#caroussel_03');
-  conent.scrollLeft += 250;
-  event.preventDefault();
-});
-
-const leftBtn_04 = document.getElementById('scroll_left_04');
-
-leftBtn_04.addEventListener("click", function(event) {
-  console.log("dectection scroll left");
-  let conent = document.querySelector('#caroussel_04');
-  console.log(conent.scrollLeft);
-  conent.scrollLeft -= 250;
-  console.log(conent.scrollLeft);
-  event.preventDefault();
-});
-
-const rightBtn_04 = document.getElementById('scroll_right_04');
-
-rightBtn_04.addEventListener("click", function(event) {
-  const conent = document.querySelector('#caroussel_04');
-  conent.scrollLeft += 250;
-  event.preventDefault();
-});
-
-rightBtn_04.addEventListener("click", function(event) {
-  const conent = document.querySelector('#caroussel_04');
-  conent.scrollLeft += 250;
-  event.preventDefault();
-});
-
-
-// bouton pour le modal 
-
-
-
-
-
-
-// document
-//  .getElementById("scroll_left")
-//  .addEventListener("click", scrollLeft(url_score))
-
-//  let img = document.createElement("img");
-//  img.src = ;
-//  let src = document.getElementById("caroussel");
-//  src.appendChild(img);
-
-// for (let i = 0; i < 8; i++) {
-//   var image = document.createElement("img");
-//   image.src = data.results[i].image_url;
-//   image.className = "caroussel";
-//   //image.classList.add("class_image");
-//   //image.setAttribute('class', 'class_image');
-//   section1.appendChild(image);
-// }
+let scroll_left  = definir les elements "scroll_left" par la class (on aura une liste)
+iterer cette liste 
+Pour element dans scroll_left 
+  alors si le parent de element == element_caroussel_01
+      alors rightBtn_01.addEventListener("click", function(event) {
+              const conent = document.querySelector('#caroussel_01');
+              conent.scrollLeft += 250;
+              event.preventDefault();
+            }
+  alors si le parent de element == element_caroussel_02
+      alors rightBtn_01.addEventListener("click", function(event) {
+              const conent = document.querySelector('#caroussel_02');
+              conent.scrollLeft += 250;
+              event.preventDefault();
+            }
+      
+*/
