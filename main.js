@@ -1,7 +1,7 @@
-let url_score = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
-let url_genre_Action = "http://localhost:8000/api/v1/titles/?genre=Action";
-let url_genre_Romance = "http://localhost:8000/api/v1/titles/?genre=Romance";
-let url_genre_Comedy = "http://localhost:8000/api/v1/titles/?genre=Comedy";
+let url_score = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7";
+let url_genre_Action = "http://localhost:8000/api/v1/titles/?genre=Action&page_size=7";
+let url_genre_Romance = "http://localhost:8000/api/v1/titles/?genre=Romance&page_size=7";
+let url_genre_Comedy = "http://localhost:8000/api/v1/titles/?genre=Comedy&page_size=7";
 
 // Get the modal
 let modal = document.getElementById("myModal");
@@ -37,19 +37,17 @@ async function getModal(url) {
   })
 
   .then(function(json){
-    
     let modalContent = json;
     let image = document.querySelector("#modalImgUrl");
     image.src = modalContent.image_url;
     document.getElementById("modalTitle").innerHTML = modalContent.title;
-    document.getElementById("modalDetails").innerHTML = `${modalContent["imdb_score"]}/10 - ${modalContent["date_published"].slice(0,4)} - ${modalContent["duration"] + " min"}`;
+    document.getElementById("modalDetails").innerHTML = `${modalContent["imdb_score"]}/10 -- ${modalContent["date_published"].slice(0,4)} -- ${modalContent["duration"] + " min"}`;
     document.getElementById("modalStoryLine").innerHTML = `RESUME : <br/>${modalContent["long_description"]}`;
     document.getElementById("modalCast").innerHTML = `ACTEURS : <br/> ${modalContent["actors"].join(", ")}`;
     document.getElementById("modalDirector").innerHTML = `REALISATEUR : <br/> ${modalContent["directors"].join(", ")}`;
     document.getElementById("modalGenre").innerHTML = `GENRE : <br/>${modalContent["genres"].join(", ")}`;
     document.getElementById("modalCountryOfOrigin").innerHTML = `PAYS D'ORIGINE : <br/>${modalContent["countries"].join(", ")}`;
     document.getElementById("modalBoxOffice").innerHTML = `BOX OFFICE : <br/>${modalContent["worldwide_gross_income"]}`;
-    console.log(document.getElementById("modalDetails").innerHTML);
     document.getElementById("myModal").style.display = "block";
 
   });
@@ -57,7 +55,6 @@ async function getModal(url) {
 
 function getMoviesID(){
   var elt = this;
-  /* console.log(elt); */
   let movie_id = elt.getAttribute("data-id");
   let urldetail = "http://localhost:8000/api/v1/titles/" + movie_id;
   getModal(urldetail); 
@@ -73,25 +70,18 @@ async function getMovies(url, id_caroussel){
   })
 
   .then(function(value){
-
     document.getElementById(id_caroussel);
 
-    value.results.slice(-7).forEach(movie => {
-      // console.log(movie);
-
+    value.results.forEach(movie => {
       let img = document.createElement("img");
       let carousel = document.getElementById(id_caroussel);
       img.src = movie.image_url;
-
-
-      // creation de l'url api pour le recupérer avec le modal
       let linkApi = document.createElement("button");
       linkApi.setAttribute("data-id", movie.id);
       linkApi.setAttribute("class", "cover");
       linkApi.onclick = getMoviesID;
       linkApi.appendChild(img); 
       carousel.appendChild(linkApi);
-
     });
   })
 
@@ -217,24 +207,3 @@ for (let elt of scroll_right){
     });
   }
 }
-
-
-/* 
-
-let scroll_left  = definir les elements "scroll_left" par la class (on aura une liste)
-iterer cette liste 
-Pour element dans scroll_left 
-  alors si le parent de element == element_caroussel_01
-      alors rightBtn_01.addEventListener("click", function(event) {
-              const conent = document.querySelector('#caroussel_01');
-              conent.scrollLeft += 250;
-              event.preventDefault();
-            }
-  alors si le parent de element == element_caroussel_02
-      alors rightBtn_01.addEventListener("click", function(event) {
-              const conent = document.querySelector('#caroussel_02');
-              conent.scrollLeft += 250;
-              event.preventDefault();
-            }
-      
-*/

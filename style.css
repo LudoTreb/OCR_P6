@@ -9,12 +9,9 @@
         url('ress/font/Roboto-Regular-webfont.svg#robotoregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
-
 /* Body */
-
 body {
     margin-left: auto;
     margin-right: auto;
@@ -27,7 +24,6 @@ body {
 
 /* Header */
 
-
 nav {
     display: flex;
     position: fixed;
@@ -39,11 +35,9 @@ nav {
     max-width: 900px;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
-    /* border: 5px solid greenyellow; */
 }
 
 #nav_logo {
-
     width: 40px;
 }
 
@@ -51,15 +45,7 @@ nav {
     color: white;
     margin: 0 25px 0 25px;
     text-decoration: none;
-
 }
-
-section {
-    /* border: 5px solid cyan; */
-
-}
-
-
 
 /* Section Home */
 
@@ -71,13 +57,7 @@ section {
     background-size: cover;
     background-repeat: no-repeat ;
     border-top: 2px solid white;
-    border-bottom: 2px solid white;
-    
-}
-
-.backgroundColor {
-    background-color:linear-gradient(to bottom, red, rgba(0,0,0,1) );
-    z-index: 3;
+    border-bottom: 2px solid white;  
 }
 
 section h1 {
@@ -105,13 +85,10 @@ section h1 {
 /* Section Container  */
 
 #container {
-
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    /* border: 5px solid blue; */
 }
-
 
 section h3 {
     display: flex;
@@ -122,13 +99,6 @@ section h3 {
 
 /* Caroussel */
 
-.element_caroussel {
-    display: flex;
-    align-items: center;
-    /* border: 5px solid lightcoral; */
-
-}
-
 #element_caroussel_01, #element_caroussel_02,
 #element_caroussel_03, #element_caroussel_04 {
     display: flex;
@@ -137,7 +107,6 @@ section h3 {
 
 #caroussel_01, #caroussel_02,
 #caroussel_03, #caroussel_04  {
-    
     height: 250px;
     width: auto;
     overflow: hidden;
@@ -149,7 +118,6 @@ section h3 {
     align-items: center;
     padding-left: 5px;
     padding-right: 5px;
-    
 }
 
 .cover img {
@@ -157,8 +125,7 @@ section h3 {
     width: auto;
     border-radius: 5px;
     border: 2px solid rgba(255,255,255,0.25);
-    margin: 20px 10px 10px 10px;
-    
+    margin: 20px 10px 10px 10px; 
 }
 
 .cover {
@@ -166,8 +133,6 @@ section h3 {
     border: none;
     padding: 0;
     background: none;
-    
-    
 }
 
 .scroll_left, .scroll_right {
@@ -184,7 +149,6 @@ section h3 {
 }
 
 #modalClass {
-
     color: black;
 }
 
@@ -215,25 +179,27 @@ section h3 {
 /* Modal Content/Box */
 .modal-content {
     color: black;
-    background-color: #fefefe;
-    
+    background-color: white;
     margin: 15% auto;
-    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     border-radius: 5px;
     width: 80%;
-    /* Could be more or less, depending on screen size */
 }
 
-/* Test pour l'image du modal*/
-#modalImgUrl {
-    background-image: url("");
+.modal-content img {
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.25);
+
+}
+
+#modalStoryLine {
+    width: 75%;
 }
 
 /* The Close Button */
 .close {
-    color: gainsboro;
+    color: grey;
     float: right;
     font-size: 25px;
     font-weight: bold;
@@ -246,11 +212,6 @@ section h3 {
     cursor: pointer;
 }
 
-#modalStoryLine {
-    width: 75%;
-}
-
-
 /* Responsive parameters */
 @media screen and (max-width: 900px) {
     
@@ -259,7 +220,6 @@ section h3 {
         margin-right: auto;
         color: white;
         background-color: black;
-        
     }
     #home {
         display: flex;
@@ -267,7 +227,6 @@ section h3 {
         flex-direction: column;
         background-image: url("");
         background-position: center;
-    
     }
 
     section h1 {
@@ -276,19 +235,16 @@ section h3 {
     }
     
     .resume {
-        
         width: 250px;
         text-align: left;
         color: rgb(134, 32, 32);
     }
     
     .button_home {
-        
         text-align: center;
         font-size: 0.8em;
         width: 80px;
         height: 30px;
     }
- 
 }
 
