@@ -53,6 +53,7 @@ async function getModal(url) {
   });
 }
 
+// Get the id of movies
 function getMoviesID(){
   var elt = this;
   let movie_id = elt.getAttribute("data-id");
