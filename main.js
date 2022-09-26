@@ -1,7 +1,7 @@
 let url_score = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=7";
-let url_genre_Action = "http://localhost:8000/api/v1/titles/?genre=Action&page_size=7";
-let url_genre_Romance = "http://localhost:8000/api/v1/titles/?genre=Romance&page_size=7";
-let url_genre_Comedy = "http://localhost:8000/api/v1/titles/?genre=Comedy&page_size=7";
+let url_genre_Action = "http://localhost:8000/api/v1/titles/?genre=Action&sort_by=-imdb_score&page_size=7";
+let url_genre_Romance = "http://localhost:8000/api/v1/titles/?genre=Romance&sort_by=-imdb_score&page_size=7";
+let url_genre_Comedy = "http://localhost:8000/api/v1/titles/?genre=Comedy&sort_by=-imdb_score&page_size=7";
 
 // Get the modal
 let modal = document.getElementById("myModal");
